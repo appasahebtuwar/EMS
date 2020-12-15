@@ -1,0 +1,44 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="{% url 'login' %}" method="post">{% csrf_token %}
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus
+                value="{{form.email.value|default_if_none:''}}" name="{{form.email.name}}">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
+                value="{{form.password1.value|default_if_none:''}}" name="{{form.password.name}}">
+
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Log in</button>
+            </form><!-- /form -->
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                {% if message.tags %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <p>Not Registered yet?
+                <a href="{% url 'signup' %}" class="forgot-password">
+                    Click here
+                </a>
+            </p>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+</body>
