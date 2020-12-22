@@ -130,7 +130,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-# from django.core.urlresolvers import reverse_lazy
-# LOGIN_URL = reverse_lazy('my_app.views.sign_in')
-# LOGIN_URL = 'MB_Python_CRUD_Application.views.LoginView.as_View()'
